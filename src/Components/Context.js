@@ -1,18 +1,17 @@
-import React,{useState} from "react";
-const functionTemplate = () => {console.log("Phat jaa")}
-const userObjectContext = {
-    name:"Himanshu",
-    cartlist:[],
-    updatelist: functionTemplate,
-  }
-  
-export const UserContext = React.createContext(userObjectContext)
+import React, {useState} from 'react';
 
-export default function ProviderComponent({ children }) {
-    const [context] = useState({
-        ...userObjectContext,
-        updatelist: () => {console.log("list changed")},
+export const UserContext = React.createContext();
+
+export const UserProvider = ({children}) => {
+    const [user, setUser] = useState({
+        name:"",
+        cartList:[]
     });
-  
-    return <UserContext.Provider value={context}>{children}</UserContext.Provider>
-  }
+    return (
+        <UserContext.Provider value={{user,setUser}}>
+            {children}
+        </UserContext.Provider>
+    );
+};
+
+export const UserConsumer = UserContext.Consumer;

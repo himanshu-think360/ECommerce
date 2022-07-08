@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { useState,useEffect } from "react";
-// import { UserContext } from "./Context";
+import { useContext } from "react";
+import { UserContext } from "./Context";
 const Cardcontainer = styled.div`
 border: 1px solid black;
 width: 20vw;
@@ -11,7 +11,7 @@ width: 90%;
 height: 90%
 `;
 const Carddesc = styled.div`
-font-size:25px;
+font-size: large;
 font-family:system-ui;
 `;
 const Cardbuttons = styled.div`
@@ -26,23 +26,63 @@ color:white;
 background-color: ${props=>props.cart ? 'red' : 'blue'}
 `;
 export default function Card(props){
-    const [inCart,setinCart] = useState(true)
-    // const user = useContext(UserContext);
-    // console.log(user)
-    function addItem(props){
+    const {user,setUser} = useContext(UserContext);
+    function addItem(arr,value){
+        if(!arr.includes(value)){
+            arr.push(value)
+        }
+        return arr
+    }
+    function removeItem(arr,value){
+        var i = 0;
+        while (i < arr.length) {
+          if (arr[i] === value) {
+            arr.splice(i, 1);
+          } else {
+            ++i;
+          }
+        }
+        return arr;
+    }
+    function addCart(props){
+        setUser({
+            ...user,
+            cartList: addItem(user.cartList,props)
+        })
         console.log(props)
     }
-    function removeItem(props){
+    function removeCart(props){
+        setUser({
+            ...user,
+            cartList: removeItem(user.cartList,props)
+        })
         console.log(props)
+    }
+
+    function checkCart(id){
+        if (user.cartList.includes(id)){
+            return(
+            <Button cart onClick={()=>{
+               removeCart(id)
+            }}>Remove From Cart</Button>
+            );
+            }
+        else {
+            return( 
+            <Button onClick={()=>{
+                addCart(id)
+            }}>Add to cart</Button>
+            );
+        }
     }
     return(
-        <Cardcontainer>
+            <Cardcontainer>
             <Cardimage src={props.url}></Cardimage>
                 <Carddesc>
                     {props.desc}
                 </Carddesc>
                 <Cardbuttons>
-                    {inCart ? <Button onClick={()=>{removeItem(props.id)}} cart>Remove to cart</Button>:<Button onClick={()=>{addItem(props.id)}}>Add to cart</Button>} 
+                {checkCart(props.id)}
                 </Cardbuttons>
         </Cardcontainer>
     );
