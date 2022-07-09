@@ -1,3 +1,4 @@
+import React from "react";
 import { UserContext } from "./Context";
 import { useContext } from "react";
 export default function User(){
@@ -10,7 +11,8 @@ export default function User(){
     function logoutUser(){
         setUser({
             ...user,
-            name:""
+            name:"",
+            cartList:[]
         })
     }
     return(

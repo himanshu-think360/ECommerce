@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { useContext } from "react";
 import { UserContext } from "./Context";
@@ -70,7 +71,12 @@ export default function Card(props){
         else {
             return( 
             <Button onClick={()=>{
-                addCart(id)
+                if(user.name == ""){
+                    alert("Please Login")
+                }
+                else{
+                    addCart(id)
+                }
             }}>Add to cart</Button>
             );
         }
