@@ -21,7 +21,7 @@ export default function User(){
             alert("Please login")
         }
         else(
-            window.open("/cart","_self")
+            window.open("/Ecommerce/cart","_self")
         )
     }
     return(
