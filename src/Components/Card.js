@@ -71,12 +71,7 @@ export default function Card(props){
         else {
             return( 
             <Button onClick={()=>{
-                if(user.name == ""){
-                    alert("Please Login")
-                }
-                else{
                     addCart(id)
-                }
             }}>Add to cart</Button>
             );
         }

@@ -1,30 +1,37 @@
-import React, { useContext,useState } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "./Context";
 import Card from "./Card";
+import 'bootstrap/dist/css/bootstrap.css';
+import { Container, Row, Col } from "react-bootstrap";
 export default function CartDisplay(){
-    const { user,setUser } = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const localJson = require('./data.json')
     const displayCard = {"data":""}
-    // const [displayCard,setDisplayCard] = useState(localJson.data)
-    if(user.cartList.length !== 0)
+    if(user.cartList.length !== 0 && user.name !== "")
     {
-        // console.log(displayCard)
-        // setDisplayCard(localJson.data.filter(item => !user.cartList.includes(item.id)))
         displayCard.data = localJson.data.filter(item => user.cartList.includes(item.id))
         return(
-            <React.Fragment>
-                {
-              displayCard.data.map((card) => {
-                return(
-                  <Card key={card.id} id={card.id} url={card.src} desc={card.description} tag={card.itemtype}/>
-                );
-              })
-            }
-            </React.Fragment>
+          <React.Fragment>
+          <Container fluid style={{paddingTop:10, paddingBottom:10}}>
+            <Row >
+              {
+          displayCard.data.map((card) => {
+            return(
+              <Col lg={3} style={{paddingTop:10}}>
+                <Card key={card.id} id={card.id} url={card.src} desc={card.description} tag={card.itemtype}/>
+              </Col>
+            );
+          })
+        }
+            </Row>
+          </Container>
+        </React.Fragment>
         );
     }
+    else if(user.name !== ""){
+        return(<div>No Items present in the cart</div>)
+    }
     else{
-        displayCard.data = localJson.data
-        return(<div></div>)
+      throw new Error("Not Logged In")
     }
 }

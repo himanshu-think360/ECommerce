@@ -1,6 +1,7 @@
 import React from "react";
 import { UserContext } from "./Context";
 import { useContext } from "react";
+import { Cart } from "react-bootstrap-icons";
 export default function User(){
     const { user, setUser} =useContext(UserContext)
     function loginUser(){
@@ -15,15 +16,21 @@ export default function User(){
             cartList:[]
         })
     }
+    function goCart(){
+        if(user.name === ""){
+            alert("Please login")
+        }
+        else(
+            window.open("/cart","_self")
+        )
+    }
     return(
-        <div>
+        <span>
             {(!user.name)?<button onClick={loginUser}>Login</button>:
             <div>
                 <span>Hi {user.name}</span><button onClick={logoutUser}>Logout</button>
             </div>}
-            <div>
-                {user.cartList}
-            </div>
-        </div>
+            <Cart onClick={goCart} />
+        </span>
     );
 }
