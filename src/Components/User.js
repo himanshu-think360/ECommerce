@@ -2,8 +2,10 @@ import React from "react";
 import { UserContext } from "./Context";
 import { useContext } from "react";
 import { Cart } from "react-bootstrap-icons";
+import {useHistory} from 'react-router-dom'
 export default function User(){
     const { user, setUser} =useContext(UserContext)
+    let history = useHistory()
     function loginUser(){
         setUser({
             ...user,
@@ -21,7 +23,7 @@ export default function User(){
             alert("Please login")
         }
         else(
-            window.open("/Ecommerce/cart","_self")
+            history.push('/Ecommerce/cart')
         )
     }
     return(
