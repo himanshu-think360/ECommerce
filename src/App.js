@@ -8,7 +8,7 @@ import CartDisplay from './Components/CartDisplay';
 function App() {
   return (
     <UserProvider>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <div className='App'>
         <Routes>
                  <Route exact path='/' element={<div>< User /><CardDisplay /></div>}></Route>
