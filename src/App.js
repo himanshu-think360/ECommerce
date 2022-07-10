@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
+import {Switch} from 'react-router-dom';
 import {UserProvider} from './Components/Context';
 import User from './Components/User';
 import CardDisplay from './Components/CardDisplay';
@@ -8,13 +9,18 @@ import CartDisplay from './Components/CartDisplay';
 function App() {
   return (
     <UserProvider>
-        <div className='App'>
-        <Router basename={`/${process.env.PUBLIC_URL}`}>
-        <Switch>
-                 <Route  path='/Ecommerce' exact component={<div>< User /><CardDisplay /></div>} />
-                 <Route path='/Ecommerce/cart' exact component={< CartDisplay />} />
+      <div className='App'>
+          <Switch>
+          <Route exact path="/" >
+              <div>
+                <User />
+                <CardDisplay />
+              </div>
+          </Route>
+          <Route path="/cart" >
+            <CartDisplay />
+          </Route>
         </Switch>
-        </Router>
         </div>
     </UserProvider>
   );

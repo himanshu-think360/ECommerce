@@ -16,7 +16,7 @@ export default function CardDisplay(){
         setResult(localJson.data)
       }
       else{
-        setResult(localJson.data.filter(obj=> obj.itemtype == event.target.value));
+        setResult(localJson.data.filter(obj=> obj.itemtype === event.target.value));
       }
       console.log(result);
     }

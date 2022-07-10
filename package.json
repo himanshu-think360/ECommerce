@@ -1,5 +1,5 @@
 {
-  "homepage": "http://himanshu-think360.github.io/ECommerce", 
+  "homepage": "http://himanshu-think360.github.io/ECommerce",
   "name": "ecommerce",
   "version": "0.1.0",
   "private": true,
@@ -10,11 +10,12 @@
     "bootstrap": "^5.1.3",
     "bootstrap-icons": "^1.8.3",
     "gh-pages": "^4.0.0",
+    "history": "^4.10.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.4.0",
     "react-bootstrap-icons": "^1.8.4",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.3.0",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "^2.1.3",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
