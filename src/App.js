@@ -6,6 +6,7 @@ import {UserProvider} from './Components/Context';
 import User from './Components/User';
 import CardDisplay from './Components/CardDisplay';
 import CartDisplay from './Components/CartDisplay';
+import Title from './Components/Title';
 function App() {
   return (
     <UserProvider>
@@ -13,6 +14,8 @@ function App() {
           <Switch>
           <Route exact path="/" >
               <div>
+                <Title />
+                <hr />
                 <User />
                 <CardDisplay />
               </div>
